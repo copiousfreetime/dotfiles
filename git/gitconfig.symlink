@@ -4,6 +4,9 @@
 [color]
   # Colour terminal command output when possible.
   ui = auto
+  diff = auto
+  showbranch = auto
+  status = auto
 
 [gist]
   # Open GitHub Gist in browser after submission.
@@ -12,6 +15,9 @@
 [push]
   # Push to the set upstream branch being tracked by default.
   default = simple
+
+[pull]
+  rebase = true
 
 [fetch]
   # Always prune when fetching (and pulling).
@@ -235,5 +241,6 @@
   ## Shortened Existing Commands
   p = pull
   s = status --short --branch
+  con = diff --name-only --diff-filter=U
 
 # vim: ft=gitconfig
