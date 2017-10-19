@@ -13,7 +13,7 @@
 # * http://rixstep.com/2/20060901,00.shtml
 # -----------------------------------------------------------------------------
 
-COMPUTER_NAME="Vilya"
+COMPUTER_NAME="eclipse"
 COMPUTER_UUID=`ioreg -rd1 -c IOPlatformExpertDevice | grep -E '(UUID)' | awk '{print $3}' | tr -d \"`
 
 # easy access to documents in iCloud Drive
