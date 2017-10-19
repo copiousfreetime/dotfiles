@@ -19,17 +19,8 @@ alias lart='/bin/ls -lartFh'
 alias pd='pushd'
 alias pp='popd'
 
-alias scr='screen -D -R'
-alias scl='screen -list'
-
 alias show='set | grep'
 alias sudo='/usr/bin/sudo -p "[sudo] password for %u: "'
-
-alias vi="$HOMEBREW_ROOT/bin/vim"
-
-alias nb='cd ~/Dropbox/Tim/notebook'
-
-alias garmin='mv /Volumes/GARMIN/Garmin/Activities/* ~/Dropbox/Tim/Garmin\ Activities/2017/ && diskutil unmount GARMIN'
 
 alias keyboard='ioreg -n IOHIDKeyboard -r | grep -e "class IOHIDKeyboard" -e VendorID\" -e Product'
 
@@ -42,29 +33,20 @@ alias wifi='networksetup -setairportpower en0'
 # open a file using the Marked application
 alias marked='open -a Marked'
 
+# iso8601 Date
+alias idate='date -u +"%Y-%m-%dT%H:%M:%SZ"'
+
+# vim sub commands
+alias v=nvim
+alias vim=nvim
+
+# -- other -- #
+alias tmux="TERM=screen-256color-bce tmux"
+alias myip='curl ifconfig.co'
+
 # search for system icons
 function icons {
   find /System/Library -iname '*.icns' -o -iname '*.tiff' -o -iname '*.png' 2>/dev/null | grep -i "$1[^/]*$"
-}
-
-function stuff {
-  if [ -z "$1" ]; then
-    echo "Usage: stuff [folder]"
-    echo "  Compress the given 'folder' into a gzipped tar archive"
-    return 1
-  fi
-
-  if [ -f "$1.tgz" ]; then
-    echo "  Stuffed file '$1.tgz' already exists"
-    return 1
-  else
-    echo "  Creating '$1.tar'"
-    tar -cvf "$1.tar" "$1"
-    echo "  Compressing '$1.tar'"
-    gzip -9 "$1.tar"
-    mv "$1.tar.gz" "$1.tgz"
-    echo "  Created '$1.tgz'"
-  fi
 }
 
 function ql {
@@ -127,16 +109,6 @@ function findr {
 
 function cdiff {
   diff -c "$1" "$2" 2>&1 | awk -f "$DOTS/bash/cdiff.awk"
-}
-
-# from Tammer Saleh (http://tammersaleh.com/posts/useful-macvim-script)
-function v {
-  if [ $# == 0 ] ; then
-    mvim
-  else
-    mvim --servername $(basename $(pwd)) \
-         --remote-tab-silent "$@" 1>/dev/null 2>&1
-  fi
 }
 
 # from Nathan Witmer

@@ -1,0 +1,15 @@
+#! /usr/bin/env ruby
+
+pattern = %r/#{ ARGV.shift }/
+
+lines = []
+
+if ARGV.empty?
+  lines.push *STDIN.readlines
+else
+  ARGV.each(arg){ lines.push *IO.readlines(arg)}
+end
+
+lines.each do |line|
+  puts line.split(pattern)
+end

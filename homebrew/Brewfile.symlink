@@ -1,173 +1,162 @@
-tap 'caskroom/cask'
-tap 'caskroom/drivers'
-tap 'homebrew/bundle'
-tap 'homebrew/core'
-tap 'homebrew/services'
-
-cask 'java'
-
-brew 'ack'
-brew 'gdbm'
-brew 'openssl'
-brew 'readline'
-brew 'rsync'
-brew 'sqlite'
-brew 'python'
-brew 'libxml2'
-brew 'augeas'
-brew 'autoconf'
-brew 'automake'
-brew 'awscli'
-brew 'bash'
-brew 'bash-completion'
-brew 'botan'
-brew 'c-ares'
-brew 'libpng'
-brew 'freetype'
-brew 'fontconfig'
-brew 'gettext'
-brew 'libffi'
-brew 'pcre'
-brew 'glib'
-brew 'pixman'
-brew 'cairo'
-brew 'cmake'
-brew 'cscope'
-brew 'ctags'
-brew 'curl'
-brew 'dbus'
-brew 'git'
-brew 'dos2unix'
-brew 'elasticsearch@2.4', restart_service: true
-brew 'faac'
-brew 'lame'
-brew 'x264'
-brew 'xvid'
-brew 'ffmpeg'
-brew 'fzf'
-brew 'gmp'
-brew 'mpfr'
-brew 'gawk'
-brew 'isl'
-brew 'libmpc'
-brew 'gcc'
-brew 'geoip'
-brew 'gist'
-brew 'go'
-brew 'glide'
-brew 'libtasn1'
-brew 'nettle'
-brew 'gnutls'
-brew 'gotags'
-brew 'graphviz'
-brew 'htop-osx'
-brew 'xz'
-brew 'python3'
-brew 'httpie'
-brew 'hub'
-brew 'icu4c'
-brew 'jpeg'
-brew 'libtiff'
-brew 'libtool'
-brew 'perl'
-brew 'pstree'
-brew 'imagemagick'
-brew 'jansson'
-brew 'jemalloc'
-brew 'oniguruma'
-brew 'jq'
-brew 'launch_socket_server', restart_service: true
-brew 'launchdns', restart_service: true
-brew 'lcov'
-brew 'libevent'
-brew 'libgpg-error'
-brew 'libgcrypt'
-brew 'libgda'
-brew 'libyaml'
-brew 'mas'
-brew 'md5sha1sum'
-brew 'memcached', restart_service: true
-brew 'mtr'
-brew 'mysql@5.7'
-brew 'openssl@1.1'
-brew 'nginx', restart_service: true
-brew 'nmap'
-brew 'nsq'
-brew 'parallel'
-brew 'pidof'
-brew 'pigz'
-brew 'pkg-config'
-brew 'platypus'
-brew 'pv'
-brew 'qt5'
-brew 'ragel'
-brew 'ruby-build'
-brew 'rbenv'
-brew 'redis', restart_service: true
-brew 'ruby'
-brew 'snappy'
-brew 'socat'
-brew 'softhsm'
-brew 'switchaudio-osx'
-brew 'the_silver_searcher'
-brew 'tmux'
-brew 'tree'
-brew 'utf8proc'
-brew 'wget'
-brew 'wireshark', args: ['with-qt5']
-
-cask 'airfoil'
-cask 'appcleaner'
-cask 'arduino'
-cask 'caffeine'
-cask 'calibre'
-cask 'encryptme'
-cask 'dash'
-cask 'docker'
-cask 'dropbox'
-cask 'fluid'
-cask 'ftdi-vcp-driver'
-cask 'google-chrome'
-cask 'handbrake'
-cask 'intellij-idea'
-cask 'launchbar'
-cask 'licecap'
-cask 'makemkv'
-cask 'minecraft'
-cask 'monodraw'
-cask 'openscad'
-cask 'platypus'
-cask 'powerphotos'
-cask 'ripit'
-cask 'screenhero'
-cask 'skitch'
-cask 'slack'
-cask 'steam'
-cask 'subler'
-cask 'superduper'
-cask 'viscosity'
-cask 'vlc'
-cask 'zoomus'
-
-mas 'Keynote', id: 409183694
-mas 'Twitter', id: 409789998
-mas 'iMovie', id: 408981434
-mas 'Evernote', id: 406056744
-mas 'Skitch', id: 425955336
-mas '1Password', id: 443987910
-mas 'Xcode', id: 497799835
-mas 'OmniGraffle', id: 711830901
-mas 'Wunderlist', id: 410628904
-mas 'Moom', id: 419330170
-mas 'Pages', id: 409201541
-mas 'Screeny', id: 440991524
-mas 'Marked', id: 448925439
-mas 'GarageBand', id: 682658836
-mas 'QuitsAppsMBI', id: 436884448
-mas 'Slack', id: 803453959
-mas 'Numbers', id: 409203825
-mas 'Things 3', id: 904280696
-
-brew 'macvim', args: ['with-override-system-vim']  # requires Xcode for installation
-
-# vim: ft=ruby
+tap "beeftornado/rmtree"
+tap "caskroom/cask"
+tap "heroku/brew"
+tap "homebrew/boneyard"
+tap "homebrew/bundle"
+tap "homebrew/core"
+tap "homebrew/services"
+tap "homebrew/versions"
+tap "neovim/neovim"
+brew "a52dec"
+brew "ack"
+brew "libyaml"
+brew "gdbm"
+brew "openssl"
+brew "readline"
+brew "sqlite"
+brew "ansible"
+brew "ant"
+brew "apr"
+brew "apr-util"
+brew "aspell"
+brew "astyle"
+brew "autoconf"
+brew "automake"
+brew "awscli"
+brew "bash"
+brew "bash-completion"
+brew "beanstalkd"
+brew "bison"
+brew "boost-python"
+brew "bsdiff"
+brew "bsdmake"
+brew "c-ares"
+brew "chruby"
+brew "cmake"
+brew "coreutils"
+brew "cscope"
+brew "ctags"
+brew "curl"
+brew "direnv"
+brew "dos2unix"
+brew "gettext"
+brew "e2fsprogs"
+brew "elasticsearch"
+brew "elixir"
+brew "exercism"
+brew "expat"
+brew "flyway"
+brew "fontconfig"
+brew "fortune"
+brew "fossil"
+brew "fzf"
+brew "geos"
+brew "giflib"
+brew "git"
+brew "git-extras"
+brew "libffi"
+brew "pcre"
+brew "glib"
+brew "gmp"
+brew "nettle"
+brew "gnupg"
+brew "go"
+brew "goaccess"
+brew "gperftools"
+brew "gpp"
+brew "libtool"
+brew "graphviz"
+brew "h2o"
+brew "heroku"
+brew "lua"
+brew "highlight"
+brew "hub"
+brew "hunspell"
+brew "imagemagick"
+brew "iperf"
+brew "jemalloc"
+brew "oniguruma"
+brew "jq"
+brew "json-c"
+brew "jsonlint"
+brew "leptonica"
+brew "leveldb"
+brew "libevent"
+brew "proj"
+brew "libgeotiff"
+brew "libmagic"
+brew "libressl"
+brew "libtermkey"
+brew "libuv"
+brew "libvterm"
+brew "libwebsockets"
+brew "little-cms"
+brew "little-cms2"
+brew "llvm"
+brew "lmdb"
+brew "popt"
+brew "logrotate"
+brew "lz4"
+brew "lzlib"
+brew "lzo"
+brew "mas"
+brew "maven"
+brew "md5sha1sum"
+brew "memtester"
+brew "mercurial"
+brew "mongodb", restart_service: true
+brew "mongoose"
+brew "mosquitto"
+brew "mpfr"
+brew "msgpack"
+brew "mtr"
+brew "tokyo-cabinet"
+brew "mutt"
+brew "mysql"
+brew "neovim"
+brew "nmap"
+brew "nvm"
+brew "openjpeg"
+brew "ossp-uuid"
+brew "par"
+brew "parallel"
+brew "phantomjs"
+brew "pkg-config"
+brew "postgresql", restart_service: true
+brew "rabbitmq", restart_service: true
+brew "reattach-to-user-namespace"
+brew "redis"
+brew "ruby-install"
+brew "rust"
+brew "rustup-init"
+brew "sbt"
+brew "socat"
+brew "the_silver_searcher"
+brew "thefuck"
+brew "tmux"
+brew "tree"
+brew "wget"
+brew "xsv"
+brew "yarn"
+cask "mactex"
+cask "ngrok"
+mas "1Password", id: 443987910
+mas "Acorn", id: 634108295
+mas "Airmail 3", id: 918858936
+mas "Amphetamine", id: 937984704
+mas "Byword", id: 420212497
+mas "Fantastical", id: 435003921
+mas "Harvest", id: 506189836
+mas "iMovie", id: 408981434
+mas "Keynote", id: 409183694
+mas "Kindle", id: 405399194
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Screeny", id: 440991524
+mas "Slack", id: 803453959
+mas "Shush", id: 496437906
+mas "Table Tool", id: 1122008420
+mas "Tweetbot", id: 557168941
+mas "Write", id: 848311469
+mas "Wunderlist", id: 410628904
+mas "Xcode", id: 497799835

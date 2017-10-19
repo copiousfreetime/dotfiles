@@ -104,6 +104,8 @@ defaults write com.apple.Safari \
 defaults write com.apple.Safari \
   com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabledForLocalFiles \
   -bool false
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
 sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 1
 sudo launchctl load /System/Library/LaunchDaemons/com.apple.alf.agent.plist 2>/dev/null
 
@@ -281,7 +283,7 @@ fi
 # Install from local Brewfile
 if [ -f "$HOME/.Brewfile" ]; then
   log "Installing from user Brewfile on GitHub:"
-  brew bundle --global
+  brew bundle check --global || brew bundle --global
   xcode_license
   logk
 fi

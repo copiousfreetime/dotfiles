@@ -24,7 +24,7 @@ all the available rake tasks via the `rake -T` command.
 Download the `strap` script:
 
 ```
-curl -s -XGET 'https://raw.githubusercontent.com/TwP/dotfiles/master/script/strap' > strap
+curl -s -XGET 'https://raw.githubusercontent.com/copiousfreetime/dotfiles/master/script/strap' > strap
 ```
 
 Run the `strap` script:

@@ -1,0 +1,7 @@
+#!/usr/local/bin/bash
+
+echo "Sycning Paulito"
+rsync -raz $HOME/Dropbox/Paulito/ $HOME/Mylio/Dropbox/paulito
+
+echo "Syncing Pour de France 2015"
+rsync -raz $HOME/Dropbox/2015\ Photos/ $HOME/Mylio/Dropbox/pour-de-france-2015
