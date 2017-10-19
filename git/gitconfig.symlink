@@ -244,3 +244,5 @@
   con = diff --name-only --diff-filter=U
 
 # vim: ft=gitconfig
+[user]
+	name = copiousfreetime
