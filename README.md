@@ -51,7 +51,7 @@ things:
 
 ```
 cd ~/.dotfiles
-rake secrets:install vim:install docker:install launchbar:install
+rake secrets:install vim:install docker:install launchbar:install base16:install
 rake install
 ```
 
