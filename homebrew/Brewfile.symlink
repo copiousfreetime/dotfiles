@@ -1,5 +1,6 @@
 tap "beeftornado/rmtree"
 tap "caskroom/cask"
+tap "caskroom/versions"
 tap "heroku/brew"
 tap "homebrew/boneyard"
 tap "homebrew/bundle"
@@ -7,6 +8,7 @@ tap "homebrew/core"
 tap "homebrew/services"
 tap "homebrew/versions"
 tap "neovim/neovim"
+cask "java"
 brew "a52dec"
 brew "ack"
 brew "libyaml"
@@ -61,6 +63,7 @@ brew "gmp"
 brew "nettle"
 brew "gnupg"
 brew "go"
+brew "tokyo-cabinet"
 brew "goaccess"
 brew "gperftools"
 brew "gpp"
@@ -110,7 +113,6 @@ brew "mosquitto"
 brew "mpfr"
 brew "msgpack"
 brew "mtr"
-brew "tokyo-cabinet"
 brew "mutt"
 brew "mysql"
 brew "neovim"
@@ -138,24 +140,49 @@ brew "tree"
 brew "wget"
 brew "xsv"
 brew "yarn"
-#cask "mactex"
+cask "arq"
+cask "backblaze"
+cask "cloudapp"
+cask "docker"
+cask "dropbox"
+cask "firefox"
+cask "flowdock"
+cask "gitkraken"
+cask "google-chrome"
+cask "iterm2"
+cask "keybase"
+cask "launchbar"
+cask "little-snitch"
 cask "ngrok"
+cask "postico"
+cask "screenhero"
+cask "steam"
+cask "superduper"
+cask "virtualbox"
+cask "virtualbox-extension-pack"
+cask "vuescan"
+cask "zoomus"
+cask "caskroom/versions/adobe-photoshop-lightroom600"
+cask "caskroom/versions/dash3"
 mas "1Password", id: 443987910
 mas "Acorn", id: 634108295
 mas "Airmail 3", id: 918858936
 mas "Amphetamine", id: 937984704
 mas "Byword", id: 420212497
 mas "Fantastical", id: 435003921
+mas "GarageBand", id: 682658836
 mas "Harvest", id: 506189836
 mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
+mas "Moom", id: 419330170
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Screeny", id: 440991524
-mas "Slack", id: 803453959
 mas "Shush", id: 496437906
+mas "Slack", id: 803453959
 mas "Table Tool", id: 1122008420
+mas "Telegram", id: 747648890
 mas "Tweetbot", id: 557168941
 mas "Write", id: 848311469
 mas "Wunderlist", id: 410628904
