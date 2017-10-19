@@ -1,0 +1,14 @@
+#!/bin/bash
+
+REPO_ROOT=${HOME}/repos/github.com
+
+if [ -z "$1" ]; then
+  echo "Error: Need a user/repo"
+  echo "Usage: $0 user/repo"
+  exit 1
+fi
+
+REPO_DIR=${REPO_ROOT}/${1}
+
+git clone "git@github.com:${1}" ${REPO_DIR}
+echo ${REPO_DIR}

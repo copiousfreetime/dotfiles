@@ -1,0 +1,130 @@
+#!/usr/bin/env ruby
+
+require 'dotenv'
+require 'harvested'
+
+class WorkWeek
+  attr_reader :today
+  attr_reader :sunday
+  attr_reader :saturday
+
+  def self.last
+    new( 7 )
+  end
+
+  def initialize( last = 0 )
+    @last     = last
+    @today    = Date.today
+    @sunday   = today - today.wday - @last
+    @saturday = sunday + 6
+  end
+end
+
+class HarvestWeekReport
+
+  attr_reader :subdomain
+  attr_reader :username
+  attr_reader :password
+  attr_reader :api
+  attr_reader :work_week
+
+  def initialize( env = ENV, work_week = WorkWeek.new )
+
+    @subdomain      = env['HARVEST_SUBDOMAIN']
+    @username       = env['HARVEST_USERNAME']
+    @password       = env['HARVEST_PASSWORD']
+    @work_week      = work_week
+    @api            = Harvest.client( @subdomain, @username,
+                                 @password, :ssl => true )
+    @client_entries = Hash.new
+  end
+
+  def account
+    @account ||= api.account
+  end
+
+  def me
+    @me ||= account.who_am_i
+  end
+
+  def clients
+    @clients ||= api.clients.all.each_with_object( {} )  { |c,memo| memo[c.id] = c }
+  end
+
+  def find_client( name )
+    clients.values.find { |c| c.name =~ /#{name}/i }
+  end
+
+  def projects
+    @projects ||= api.projects.all.each_with_object( {} ) { |p,memo| memo[p.id] = p }
+  end
+
+  def tasks
+    @tasks ||= api.tasks.all.each_with_object( {} ) { |t,memo| memo[t.id] = t }
+  end
+
+  def find_project( name )
+    projects.values.find { |c| c.name =~ /#{name}/i }
+  end
+
+  def reports
+    @reports ||= api.reports
+  end
+
+  def entries
+    @entries ||= reports.time_by_user( me, work_week.sunday, work_week.saturday )
+  end
+
+  def entries_by_day
+    @by_day ||= entries.sort_by { |e| e.spent_at }
+  end
+
+  def entries_by_client
+    @by_client ||= entries.group_by { |e| projects[e.project_id].client_id }
+  end
+
+  def entries_by_project
+    @by_project ||= entries.group_by{ |e| e.project_id }
+  end
+
+  def find_entries_for_project( name )
+    proj = find_project( name )
+    entries_by_project[proj.id]
+  end
+
+  def find_entries_for_client( name )
+    client = find_client( name )
+    entries_by_client[client.id]
+  end
+
+  def client_entries_by_day( name )
+    entries = find_entries_for_client( name )
+    entries.group_by { |e| e.spent_at }
+  end
+
+
+  def report_client_by_day( name )
+    client = find_client( name )
+    puts "Entries for #{client.name} from #{work_week.sunday} to #{work_week.saturday}"
+
+    client_by_day = client_entries_by_day( name )
+    abort "None" if client_by_day.empty?
+
+    client_by_day.each do |day, entries|
+      puts
+      puts "## #{day}"
+      entries.each do |e|
+        puts "@#{projects[e.project_id].name} #{e.hours}"
+        puts "#{e.notes}" if e.notes
+        puts
+      end
+    end
+  end
+end
+
+if __FILE__ == $0 then
+  Dotenv.load( "~/.harvestrc" )
+  work_week = (ARGV.shift == "last") ? WorkWeek.last : WorkWeek.new
+  h = HarvestWeekReport.new( ENV, work_week )
+  h.report_client_by_day( 'dojo4' )
+end
