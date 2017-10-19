@@ -8,19 +8,39 @@ require 'fileutils'
 FILES = {
   "ssh" => {
     local: "~/.ssh",
-    glob:  %w[authorized_keys config* *rsa*]
-  },
-  "gh_ssh" => {
-    local: "~/GitHub/.ssh",
-    glob:  "*"
+    glob:  "**/*"
   },
   "secret" => {
     local: "~/.dotfiles/secret",
     glob:  "**/*"
   },
-  "info" => {
-    local: "~/Documents/Information",
-    glob:  "**/*"
+  "keybase" => {
+    local: "~/.keybase",
+    glob: "**/*"
+  },
+  "keybase-installer" => {
+    local: "~/.keybase-installer",
+    glob: "**/*"
+  },
+  "aws" => {
+    local: "~/.aws",
+    glob: %[ config credentials ]
+  },
+  "keybox" => {
+    local: "~/.keybox",
+    glob: "**/*"
+  },
+  "ngrok2" => {
+    local: "~/.ngrok2",
+    glob: "**/*"
+  },
+  "netrc" => {
+    local: "~/.netrc",
+    single_file: true
+  } ,
+  "pgpass" => {
+    local: "~/.pgpass",
+    single_file: true
   }
 }
 
@@ -49,23 +69,20 @@ namespace :secrets do
     pwd = Dir.pwd
     begin
       FILES.each do |backup, h|
-        local = h[:local]
 
-        # skip these files if the backup directory does not exist
-        src_dir = File.join(VOLUME, backup)
-        next unless File.exists?(src_dir) && File.directory?(src_dir)
-
-        Dir.chdir(src_dir)
+        local    = h[:local]
+        src_dir  = File.join(VOLUME, backup)
         dest_dir = File.expand_path(local)
 
-        Dir.glob("**/*").each do |file|
-          next if File.directory?(file)
+        if h.has_key?(:single_file) && (h[:single_file] == true)
+          b        = File.basename(dest_dir)
+          dest_dir = File.expand_path("~")
 
-          d      = File.join(dest_dir, file)
-          d_name = File.join(local,    file)
+          d        = File.join(dest_dir, b)
+          d_name   = local
 
-          s      = File.join(src_dir, file)
-          s_name = File.join(backup,  file)
+          s        = File.join(src_dir, b)
+          s_name   = File.join(backup, b)
 
           if !File.exists?(d) || (File.mtime(s) > File.mtime(d))
             puts "Copying:  #{s_name.inspect} --> #{d_name.inspect}"
@@ -73,6 +90,31 @@ namespace :secrets do
             FileUtils.cp(s, d, preserve: true)
           else
             puts "Skipping: #{s_name.inspect} --> #{d_name.inspect}"
+          end
+
+        else
+          # skip these files if the backup directory does not exist
+          next unless File.exists?(src_dir) && File.directory?(src_dir)
+
+          Dir.chdir(src_dir)
+          dest_dir = dest
+
+          Dir.glob("**/*").each do |file|
+            next if File.directory?(file)
+
+            d      = File.join(dest_dir, file)
+            d_name = File.join(local,    file)
+
+            s      = File.join(src_dir, file)
+            s_name = File.join(backup,  file)
+
+            if !File.exists?(d) || (File.mtime(s) > File.mtime(d))
+              puts "Copying:  #{s_name.inspect} --> #{d_name.inspect}"
+              FileUtils.mkdir_p(File.dirname(d))
+              FileUtils.cp(s, d, preserve: true)
+            else
+              puts "Skipping: #{s_name.inspect} --> #{d_name.inspect}"
+            end
           end
         end
       end
@@ -90,29 +132,47 @@ namespace :secrets do
         local = h[:local]
         globs = h[:glob]
 
-        # skip these files if the local directory does not exist
-        src_dir = File.expand_path(local)
-        next unless File.exists?(src_dir) && File.directory?(src_dir)
-
-        Dir.chdir(src_dir)
         dest_dir = File.join(VOLUME, backup)
 
-        Array(globs).each do |glob|
-          Dir.glob(glob).each do |file|
-            next if File.directory?(file)
+        if h.has_key?(:single_file) && (h[:single_file] == true)
+          s      = File.expand_path(local)
+          s_name = backup
+          b      = File.basename(s)
 
-            d      = File.join(dest_dir, file)
-            d_name = File.join(backup,   file)
+          d      = File.join(dest_dir, b)
+          d_name = File.join(backup, b)
 
-            s      = File.join(src_dir, file)
-            s_name = File.join(local,   file)
+          if !File.exists?(d) || (File.mtime(s) > File.mtime(d))
+            puts "Copying:  #{s_name.inspect} --> #{d_name.inspect}"
+            FileUtils.mkdir_p(File.dirname(d))
+            FileUtils.cp(s, d, preserve: true)
+          else
+            puts "Skipping: #{s_name.inspect} --> #{d_name.inspect}"
+          end
+        else
+          # skip these files if the local directory does not exist
+          src_dir = File.expand_path(local)
+          next unless File.exists?(src_dir) && File.directory?(src_dir)
 
-            if !File.exists?(d) || (File.mtime(s) > File.mtime(d))
-              puts "Copying:  #{s_name.inspect} --> #{d_name.inspect}"
-              FileUtils.mkdir_p(File.dirname(d))
-              FileUtils.cp(s, d, preserve: true)
-            else
-              puts "Skipping: #{s_name.inspect} --> #{d_name.inspect}"
+          Dir.chdir(src_dir)
+
+          Array(globs).each do |glob|
+            Dir.glob(glob).each do |file|
+              next if File.directory?(file)
+
+              d      = File.join(dest_dir, file)
+              d_name = File.join(backup,   file)
+
+              s      = File.join(src_dir, file)
+              s_name = File.join(local,   file)
+
+              if !File.exists?(d) || (File.mtime(s) > File.mtime(d))
+                puts "Copying:  #{s_name.inspect} --> #{d_name.inspect}"
+                FileUtils.mkdir_p(File.dirname(d))
+                FileUtils.cp(s, d, preserve: true)
+              else
+                puts "Skipping: #{s_name.inspect} --> #{d_name.inspect}"
+              end
             end
           end
         end
@@ -128,7 +188,7 @@ namespace :secrets do
 
   task :create_dmg do
     unless File.exists? DMG_FILE
-      cmd = %Q{hdiutil create -type UDIF -encryption AES-256 -size 10m -fs "Journaled HFS+" -volname "#{VOLUME_NAME}" -attach "#{DMG_FILE}"}
+      cmd = %Q{hdiutil create -type UDIF -encryption AES-256 -size 25m -fs "Journaled HFS+" -volname "#{VOLUME_NAME}" -attach "#{DMG_FILE}"}
       puts "Creating an ecrypted disk image for storing secrets ..."
       puts cmd
       Kernel.system cmd
