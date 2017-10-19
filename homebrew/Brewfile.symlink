@@ -138,7 +138,7 @@ brew "tree"
 brew "wget"
 brew "xsv"
 brew "yarn"
-cask "mactex"
+#cask "mactex"
 cask "ngrok"
 mas "1Password", id: 443987910
 mas "Acorn", id: 634108295

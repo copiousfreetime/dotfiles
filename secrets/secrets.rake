@@ -97,7 +97,6 @@ namespace :secrets do
           next unless File.exists?(src_dir) && File.directory?(src_dir)
 
           Dir.chdir(src_dir)
-          dest_dir = dest
 
           Dir.glob("**/*").each do |file|
             next if File.directory?(file)
