@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+
+dest_home="/Volumes/Macintosh HD 1/Users/jeremy"
+src_home=File.expand_path("~")
+
+top_level_dirs = %w[
+  Clients
+  Desktop
+  Documents
+  Downloads
+  Movies
+  Music
+  Mylio
+  Pictures
+  problems
+  repos
+  tmp
+]
+
+Dir.chdir(dest_home) do
+  top_level_dirs.each do |dir|
+    puts "***** Syncing #{dir} *******"
+    FileUtils.mkdir_p(dir)
+    Dir.chdir(dir) do
+      src  = File.join(src_home, dir) + "/"
+      cmd  = "rsync -av --progress #{src} ."
+      puts "  # PWD = #{Dir.pwd}"
+      puts "  # => #{cmd}"
+      system(cmd)
+    end
+  end
+end
