@@ -227,7 +227,6 @@
   dm = !git diff-merge-base
   dh = !git diff HEAD
   mb = !git merge-base-master
-  co = !git checkout-with-relative-age
   br = !git branches-with-relative-age
   w = !git word-diff
   u = !git push-and-set-upstream
@@ -237,11 +236,13 @@
   l = !git pretty-one-line-log || true
   f = !git fix-up-previous-commit
   pgc = !git prune-and-gc
+  cor = !git checkout-with-relative-age
 
   ## Shortened Existing Commands
   p = pull
   s = status --short --branch
   con = diff --name-only --diff-filter=U
+  co = checkout
 
 # vim: ft=gitconfig
 [user]

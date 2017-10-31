@@ -40,3 +40,7 @@ Thumbs.db
 *~
 *.swo
 *.swp
+
+# Local cache of things #
+#########################
+.gem/
