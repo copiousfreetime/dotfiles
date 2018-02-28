@@ -95,9 +95,10 @@
 
 # Settings for Git LFS
 [filter "lfs"]
-  clean = git-lfs clean %f
-  smudge = git-lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
   required = true
+	process = git-lfs filter-process
 
 [alias]
   # Show my branches
@@ -247,3 +248,4 @@
 # vim: ft=gitconfig
 [user]
 	name = copiousfreetime
+	email = jeremy@copiousfreetime.org
