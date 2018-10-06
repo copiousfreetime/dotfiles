@@ -41,7 +41,7 @@ alias v=nvim
 alias vim=nvim
 
 # -- other -- #
-alias tmux="TERM=screen-256color-bce tmux"
+alias tmux="tmux -2"
 alias myip='curl ifconfig.co'
 
 # search for system icons

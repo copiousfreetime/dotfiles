@@ -7,8 +7,11 @@ export HOMEBREW_ROOT="/usr/local"
 export ICLOUD_DRIVE="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
 
 # ==== PATH setup ====
-[ -d $HOMEBREW_ROOT ] && PATH="$HOMEBREW_ROOT/bin:$HOMEBREW_ROOT/sbin:$PATH"
-[ -d $DOTS ]          && PATH="$DOTS/bin:$PATH"
+[ -d $HOMEBREW_ROOT ]      && PATH="$HOMEBREW_ROOT/bin:$HOMEBREW_ROOT/sbin:$PATH"
+[ -d $DOTS ]               && PATH="$DOTS/bin:$PATH"
+[ -d $HOME/.cargo/bin ]    && PATH="$HOME/.cargo/bin:$PATH"
+[ -d $HOME/tools/flutter ] && PATH="$HOME/tools/flutter/bin:$PATH"
+
 export PATH
 
 export EDITOR=$(type -P nvim || type -P vim || type -P vi || type -P nano)
@@ -17,9 +20,9 @@ export PAGER=/usr/bin/less
 export TEMP=/tmp
 
 # -- history -- #
-export HISTFILESIZE=50000
+export HISTFILESIZE=200000
 export HISTCONTROL=ignoredups;
-export HISTSIZE=10000;
+export HISTSIZE=1000;
 export HISTTIMEFORMAT="%Y-%m-%dT%H:%M:%S"
 export HISTFILE=~/.bash_history
 shopt -s histappend; # append not rewrite history
@@ -51,4 +54,6 @@ fi
 # source the bashrc file
 if [ -f $HOME/.bashrc ] ; then source $HOME/.bashrc ; fi
 
+# tell react to fuck off
+export REACT_EDITOR=/dev/null
 # vim:ft=sh
