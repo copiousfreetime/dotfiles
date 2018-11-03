@@ -12,6 +12,8 @@ export ICLOUD_DRIVE="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
 [ -d $HOME/.cargo/bin ]    && PATH="$HOME/.cargo/bin:$PATH"
 [ -d $HOME/tools/flutter ] && PATH="$HOME/tools/flutter/bin:$PATH"
 
+[ -d /usr/local/opt/mysql@5.7/bin ] && PATH="$PATH:/usr/local/opt/mysql@5.7/bin"
+
 export PATH
 
 export EDITOR=$(type -P nvim || type -P vim || type -P vi || type -P nano)
