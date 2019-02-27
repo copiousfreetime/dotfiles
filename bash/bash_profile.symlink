@@ -13,6 +13,8 @@ export ICLOUD_DRIVE="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
 [ -d $HOME/tools/flutter ] && PATH="$HOME/tools/flutter/bin:$PATH"
 
 [ -d /usr/local/opt/mysql@5.7/bin ] && PATH="$PATH:/usr/local/opt/mysql@5.7/bin"
+#[ -d /usr/local/opt/llvm@4/bin    ] && PATH="$PATH:/usr/local/opt/llvm@4/bin"
+[ -d /usr/local/opt/llvm/bin    ] && PATH="$PATH:/usr/local/opt/llvm/bin"
 
 export PATH
 
@@ -59,3 +61,6 @@ if [ -f $HOME/.bashrc ] ; then source $HOME/.bashrc ; fi
 # tell react to fuck off
 export REACT_EDITOR=/dev/null
 # vim:ft=sh
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
