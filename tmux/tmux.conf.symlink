@@ -39,6 +39,10 @@ bind -r L resize-pane -R 5
 #set -g mouse-select-window on
 #setw -g mode-mouse off
 
+# Set window title to session name
+set-option -g set-titles on
+set-option -g set-titles-string "#{session_name} - #{host}"
+
 # Theme time
 
 setw -g window-status-fg cyan 
