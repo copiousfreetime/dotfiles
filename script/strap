@@ -45,10 +45,10 @@ STDIN_FILE_DESCRIPTOR="0"
 [ -t "$STDIN_FILE_DESCRIPTOR" ] && STRAP_INTERACTIVE="1"
 
 # Set by web/app.rb
-# STRAP_GIT_NAME=
-# STRAP_GIT_EMAIL=
-# STRAP_GITHUB_USER=
-# STRAP_GITHUB_TOKEN=
+STRAP_GIT_NAME='Jeremy Hinegardner'
+STRAP_GIT_EMAIL='jeremy@copiousfreetime.org'
+STRAP_GITHUB_USER='copiousfreetime'
+STRAP_GITHUB_TOKEN=
 # CUSTOM_HOMEBREW_TAP=
 # CUSTOM_BREW_COMMAND=
 STRAP_ISSUES_URL='https://github.com/MikeMcQuaid/strap/issues/new'
