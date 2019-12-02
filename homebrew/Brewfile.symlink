@@ -3,165 +3,329 @@ tap "dart-lang/dart"
 tap "heroku/brew"
 tap "homebrew/bundle"
 tap "homebrew/cask"
+tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "homebrew/services"
 tap "homebrew/versions"
 tap "neovim/neovim"
+# Library for decoding ATSC A/52 streams (AKA 'AC-3')
 brew "a52dec"
+# GNU database manager
 brew "gdbm"
+# YAML Parser
 brew "libyaml"
-brew "openssl"
+# Library for command-line editing
 brew "readline"
+# Command-line interface for SQLite
 brew "sqlite"
+# Interpreted, interactive, object-oriented programming language
 brew "python"
+# Automate deployment, configuration, and upgrading
 brew "ansible"
+# Java build tool
 brew "ant"
+# Apache Portable Runtime library
 brew "apr"
+# Companion library to apr, the Apache Portable Runtime library
 brew "apr-util"
+# Spell checker with better logic than ispell
 brew "aspell"
+# Source code beautifier for C, C++, C#, and Java
 brew "astyle"
+# Automatic configure script builder
 brew "autoconf"
+# Tool for generating GNU Standards-compliant Makefiles
 brew "automake"
+# Client for Amazon Elastic Beanstalk web service
 brew "aws-elasticbeanstalk"
+# Official Amazon AWS command-line interface
 brew "awscli"
+# Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
+# Programmable completion for Bash 3.2
 brew "bash-completion"
+# Generic work queue originally designed to reduce web latency
 brew "beanstalkd"
+# Parser generator
 brew "bison"
+# C++ library for C++/Python2 interoperability
 brew "boost-python"
+# Platform built on V8 to build network applications
 brew "node"
+# Package manager for the web
 brew "bower"
+# Draw boxes around text
 brew "boxes"
+# Generate and apply patches to binary files
 brew "bsdiff"
+# BSD make (build tool)
 brew "bsdmake"
+# Asynchronous DNS library
 brew "c-ares"
+# XML-based font configuration API for X Windows
 brew "fontconfig"
+# GNU internationalization (i18n) and localization (l10n) library
 brew "gettext"
+# Portable Foreign Function Interface library
 brew "libffi"
+# Perl compatible regular expressions library
 brew "pcre"
+# Core application library for C
 brew "glib"
-brew "chruby"
-brew "cmake"
-brew "cocoapods"
-brew "coreutils"
-brew "cscope"
-brew "ctags"
-brew "curl"
-brew "dhcpdump"
-brew "dhcping"
-brew "direnv"
-brew "dos2unix"
-brew "e2fsprogs"
-brew "elixir"
-brew "popt"
-brew "exercism"
-brew "expat"
-brew "fd"
-brew "flyway"
-brew "fortune"
-brew "fossil"
-brew "fzf"
-brew "gmp"
-brew "mpfr"
-brew "geos"
-brew "giflib"
-brew "json-c"
-brew "proj"
-brew "libgeotiff"
-brew "libtool"
-brew "little-cms2"
-brew "openjpeg"
-brew "podofo"
-brew "gdal"
-brew "git"
-brew "git-extras"
-brew "libevent"
-brew "gnupg", link: false
-brew "go"
-brew "tokyo-cabinet"
-brew "goaccess"
-brew "gperftools"
-brew "gpp"
-brew "gradle"
-brew "graphviz"
-brew "h2o"
-brew "highlight"
-brew "httperf"
-brew "hub"
-brew "hunspell"
-brew "id3tool"
-brew "usbmuxd", args: ["HEAD"]
-brew "libimobiledevice", args: ["HEAD"]
-brew "ideviceinstaller"
-brew "imagemagick"
-brew "ios-deploy"
-brew "iperf"
-brew "jemalloc"
-brew "oniguruma"
-brew "jq"
-brew "jsonlint"
-brew "leptonica"
-brew "leveldb"
-brew "libmagic"
-brew "libressl"
-brew "libtermkey"
-brew "libuv"
-brew "libvterm"
-brew "libwebsockets"
-brew "little-cms"
-brew "llvm"
-brew "llvm@4"
-brew "lmdb"
-brew "logrotate"
-brew "lz4"
-brew "lzlib"
+# Real-time data compression library
 brew "lzo"
-brew "mas"
-brew "maven"
-brew "md5sha1sum", link: false
-brew "memtester"
-brew "mercurial"
-brew "mitmproxy"
-brew "mongodb"
-brew "mongoose"
-brew "mosquitto"
-brew "msgpack"
-brew "mtr"
-brew "mutt"
-brew "mysql@5.7", restart_service: true
-brew "neovim"
-brew "netcat"
-brew "nmap"
-brew "ossp-uuid"
-brew "p7zip"
-brew "par"
-brew "parallel", link: false
-brew "pkg-config"
-brew "postgresql", restart_service: true
-brew "postgresql@10"
-brew "pv"
-brew "pyenv"
-brew "q"
-brew "rabbitmq", restart_service: true
-brew "reattach-to-user-namespace"
-brew "redis", restart_service: true
-brew "ripgrep"
-brew "ruby-build"
-brew "ruby-install"
-brew "rustup-init"
-brew "sassc"
-brew "sha2"
-brew "socat"
+# GNU multiple precision arithmetic library
+brew "gmp"
+# C library for multiple-precision floating-point computations
+brew "mpfr"
+# Computational Geometry Algorithm Library
+brew "cgal"
+# Ruby environment tool
+brew "chruby"
+# Cross-platform make
+brew "cmake"
+# Dependency manager for Cocoa projects
+brew "cocoapods"
+# GNU File, Shell, and Text utilities
+brew "coreutils"
+# Tool for browsing source code
+brew "cscope"
+# Reimplementation of ctags(1)
+brew "ctags"
+# Get a file from an HTTP, HTTPS or FTP server
+brew "curl"
+# Monitor DHCP traffic for debugging purposes
+brew "dhcpdump"
+# Perform a dhcp-request to check whether a dhcp-server is running
+brew "dhcping"
+# Load/unload environment variables based on $PWD
+brew "direnv"
+# Convert text between DOS, UNIX, and Mac formats
+brew "dos2unix"
+# Utilities for the ext2, ext3, and ext4 file systems
+brew "e2fsprogs"
+# Functional metaprogramming aware language built on Erlang VM
+brew "elixir"
+# Library like getopt(3) with a number of enhancements
+brew "popt"
+# Command-line tool to interact with exercism.io
+brew "exercism"
+# XML 1.0 parser
+brew "expat"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Database version control to control migrations
+brew "flyway"
+# Infamous electronic fortune-cookie generator
+brew "fortune"
+# Distributed software configuration management
+brew "fossil"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# Geometry Engine
+brew "geos"
+# Library and utilities for processing GIFs
+brew "giflib"
+# JSON parser for C
+brew "json-c"
+# Cartographic Projections Library
+brew "proj"
+# Library and tools for dealing with GeoTIFF
+brew "libgeotiff"
+# Generic library support script
+brew "libtool"
+# Color management engine supporting ICC profiles
+brew "little-cms2"
+# Library for JPEG-2000 image manipulation
+brew "openjpeg"
+# Geospatial Data Abstraction Library
+brew "gdal"
+# Distributed revision control system
+brew "git"
+# Small git utilities
+brew "git-extras"
+# Asynchronous event library
+brew "libevent"
+# GNU Pretty Good Privacy (PGP) package
+brew "gnupg", link: false
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
+# Lightweight database library
+brew "tokyo-cabinet"
+# Log analyzer and interactive viewer for the Apache Webserver
+brew "goaccess"
+# Multi-threaded malloc() and performance analysis tools
+brew "gperftools"
+# General-purpose preprocessor with customizable syntax
+brew "gpp"
+# Open-source build automation tool based on the Groovy and Kotlin DSL
+brew "gradle"
+# Graph visualization software from AT&T and Bell Labs
+brew "graphviz"
+# HTTP server with support for HTTP/1.x and HTTP/2
+brew "h2o"
+# Convert source code to formatted text with syntax highlighting
+brew "highlight"
+# Tool for measuring webserver performance
+brew "httperf"
+# Add GitHub support to git on the command-line
+brew "hub"
+# Spell checker and morphological analyzer
+brew "hunspell"
+# ID3 editing tool
+brew "id3tool"
+# Library to communicate with iOS devices natively
+brew "libimobiledevice", args: ["HEAD"]
+# Tool for managing apps on iOS devices
+brew "ideviceinstaller"
+# Tools and libraries to manipulate images in many formats
+brew "imagemagick"
+# Install and debug iPhone apps from the command-line
+brew "ios-deploy"
+# Tool to measure maximum TCP and UDP bandwidth
+brew "iperf"
+# malloc implementation emphasizing fragmentation avoidance
+brew "jemalloc"
+# Regular expressions library
+brew "oniguruma"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# JSON parser and validator with a CLI
+brew "jsonlint"
+# Image processing and image analysis library
+brew "leptonica"
+# Key-value storage library with ordered mapping
+brew "leveldb"
+# Implementation of the file(1) command
+brew "libmagic"
+# Version of the SSL/TLS protocol forked from OpenSSL
+brew "libressl"
+# Library for processing keyboard entry from the terminal
+brew "libtermkey"
+# USB multiplexor library for iOS devices
+brew "libusbmuxd", args: ["HEAD"]
+# Multi-platform support library with a focus on asynchronous I/O
+brew "libuv"
+# C99 library which implements a VT220 or xterm terminal emulator
+brew "libvterm"
+# C websockets server library
+brew "libwebsockets"
+# Version 1 of the Little CMS library
+brew "little-cms"
+# Generate scripting interfaces to C/C++ code
 brew "swig"
+# Next-gen compiler infrastructure
+brew "llvm"
+# Next-gen compiler infrastructure
+brew "llvm@4"
+# Lightning memory-mapped database: key-value data store
+brew "lmdb"
+# Rotates, compresses, and mails system logs
+brew "logrotate"
+# Extremely Fast Compression algorithm
+brew "lz4"
+# Data compression library
+brew "lzlib"
+# Mac App Store command-line interface
+brew "mas"
+# Java-based project management
+brew "maven"
+# Hash utilities
+brew "md5sha1sum", link: false
+# Tools to facilitate the use of Microsoft Access databases
+brew "mdbtools"
+# Utility for testing the memory subsystem
+brew "memtester"
+# Scalable distributed version control system
+brew "mercurial"
+# Intercept, modify, replay, save HTTP/S traffic
+brew "mitmproxy"
+# Web server build on top of Libmongoose embedded library
+brew "mongoose"
+# Cross platform, open source .NET development framework
+brew "mono"
+# Message broker implementing the MQTT protocol
+brew "mosquitto"
+# Library for a binary-based efficient data interchange format
+brew "msgpack"
+# 'traceroute' and 'ping' in a single tool
+brew "mtr"
+# Mongrel of mail user agents (part elm, pine, mush, mh, etc.)
+brew "mutt"
+# Open source relational database management system
+brew "mysql@5.7", restart_service: true
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# Utility for managing network connections
+brew "netcat"
+# Port scanning utility for large networks
+brew "nmap"
+# ISO-C API and CLI for generating UUIDs
+brew "ossp-uuid"
+# 7-Zip (high compression file archiver) implementation
+brew "p7zip"
+# Paragraph reflow for email
+brew "par"
+# Shell command parallelization utility
+brew "parallel", link: false
+# Manage compile and link flags for libraries
+brew "pkg-config"
+# Library to work with the PDF file format
+brew "podofo"
+# Object-relational database system
+brew "postgresql", restart_service: true
+# C++ wrapper library around CGAL
+brew "sfcgal"
+# Adds support for geographic objects to PostgreSQL
+brew "postgis"
+# Object-relational database system
+brew "postgresql@10"
+# Unix pager optimized for psql
+brew "pspg"
+# Monitor data's progress through a pipe
+brew "pv"
+# Python version management
+brew "pyenv"
+# Treat text as a database
+brew "q"
+# Messaging broker
+brew "rabbitmq", restart_service: true
+# Reattach process (e.g., tmux) to background
+brew "reattach-to-user-namespace"
+# Persistent key-value database, with built-in net interface
+brew "redis", restart_service: true
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Install various Ruby versions and implementations
+brew "ruby-build"
+# Install Ruby, JRuby, Rubinius, TruffleRuby, or mruby
+brew "ruby-install"
+# The Rust toolchain installer
+brew "rustup-init"
+# Wrapper around libsass that helps to create command-line apps
+brew "sassc"
+# Implementation of SHA-256, SHA-384, and SHA-512 hash algorithms
+brew "sha2"
+# netcat on steroids
+brew "socat"
+# Code-search similar to ack
 brew "the_silver_searcher"
+# Terminal multiplexer
 brew "tmux"
+# Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Extract, view, and test RAR archives
 brew "unrar"
+# Internet file retriever
 brew "wget"
+# Fast CSV toolkit written in Rust
 brew "xsv"
+# JavaScript package manager
 brew "yarn"
+# The Dart SDK
 brew "dart-lang/dart/dart"
+# Everything you need to get started with Heroku
 brew "heroku/brew/heroku"
 cask "adobe-photoshop-lightroom600"
 cask "airtable"
@@ -179,6 +343,7 @@ cask "dropbox"
 cask "firefox"
 cask "firefox-developer-edition"
 cask "flowdock"
+cask "font-fira-code"
 cask "fork"
 cask "github"
 cask "gitkraken"
@@ -191,6 +356,7 @@ cask "keybase"
 cask "launchbar"
 cask "little-snitch"
 cask "marked"
+cask "monodraw"
 cask "music-manager"
 cask "mysqlworkbench"
 cask "ngrok"
@@ -199,6 +365,7 @@ cask "r-app"
 cask "rstudio"
 cask "screenhero"
 cask "signal"
+cask "skype"
 cask "slack-beta"
 cask "steam"
 cask "superduper"
@@ -213,6 +380,7 @@ mas "Acorn", id: 634108295
 mas "AlignmentForXcode", id: 1168397789
 mas "Amphetamine", id: 937984704
 mas "Byword", id: 420212497
+mas "Cathode", id: 499233976
 mas "Dataplicity", id: 1302127458
 mas "Fantastical", id: 435003921
 mas "GarageBand", id: 682658836
@@ -223,8 +391,8 @@ mas "Kindle", id: 405399194
 mas "Moom", id: 419330170
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
-mas "Screeny", id: 440991524
 mas "Shush", id: 496437906
+mas "Smart JSON Editor", id: 1268962404
 mas "TabifyIndents", id: 1179234554
 mas "Table Tool", id: 1122008420
 mas "Telegram", id: 747648890
