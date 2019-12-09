@@ -2,21 +2,22 @@
 
 require 'fileutils'
 
-dest_home="/Volumes/Macintosh HD 1/Users/jeremy"
+dest_home="/Volumes/Macintosh HD - Data/Users/jeremy"
 src_home=File.expand_path("~")
 
+#  Clients
+#  Desktop
+#  Documents
+#  Downloads
+#  Movies
+#  Music
+#  Mylio
+#  Pictures
+#  problems
 top_level_dirs = %w[
-  Clients
-  Desktop
-  Documents
-  Downloads
-  Movies
-  Music
-  Mylio
-  Pictures
-  problems
   repos
   tmp
+  tools
 ]
 
 Dir.chdir(dest_home) do
