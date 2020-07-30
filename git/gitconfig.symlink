@@ -34,6 +34,7 @@
   attributesfile = ~/.gitattributes
   # Don't prompt for commit messages for merge commits.
   mergeoptions = --no-edit
+  pager = delta --dark
 
 [help]
   # Autocorrect mistyped commands.
