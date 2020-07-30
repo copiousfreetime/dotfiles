@@ -9,12 +9,8 @@ alias c='clear'
 alias du='/usr/bin/du -h'
 alias find='/usr/bin/find'
 
-alias l.='/bin/ls -lFdh .*'
-alias ls='/bin/ls -F'
-alias ll='/bin/ls -lFh'
-alias la='/bin/ls -laFh'
-alias lrt='/bin/ls -lrtFh'
-alias lart='/bin/ls -lartFh'
+alias cat="bat"
+alias diff="colordiff"
 
 alias pd='pushd'
 alias pp='popd'
