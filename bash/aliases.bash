@@ -11,6 +11,13 @@ alias find='/usr/bin/find'
 
 alias cat="bat"
 alias diff="colordiff"
+alias l.='/bin/ls -lFdh .*'
+alias ls='/bin/ls -F'
+alias ll='/bin/ls -lFh'
+alias la='/bin/ls -laFh'
+alias lrt='/bin/ls -lrtFh'
+alias lart='/bin/ls -lartFh'
+alias grep='grep --color=auto'
 
 alias pd='pushd'
 alias pp='popd'
