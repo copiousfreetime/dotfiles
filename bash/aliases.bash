@@ -27,8 +27,6 @@ alias sudo='/usr/bin/sudo -p "[sudo] password for %u: "'
 
 alias keyboard='ioreg -n IOHIDKeyboard -r | grep -e "class IOHIDKeyboard" -e VendorID\" -e Product'
 
-alias bs='./script/bootstrap'
-
 # use to turn wi-fi on and off
 # `wifi on` and `wifi off`
 alias wifi='networksetup -setairportpower en0'
