@@ -2,9 +2,9 @@ if [[ "$(type -t gem_home)" != 'function' ]]; then
   source ${DOTS}/gem_home/_gem_home
 fi
 
-if [[ "$(type -t chruby)" != 'function' ]]; then
-  source ${DOTS}/chruby/chruby.bash
-fi
+#if [[ "$(type -t chruby)" != 'function' ]]; then
+#  source ${DOTS}/chruby/chruby.bash
+#fi
 
 
 function gh() {
@@ -17,7 +17,7 @@ function gh() {
   if [[ -f "${version_file}" ]]; then
     read -r version < "${version_file}"
     echo "Using ruby version $version"
-    chruby ${version}
+    frum local ${version}
   else
     echo "$PWD/.ruby-version not found"
   fi

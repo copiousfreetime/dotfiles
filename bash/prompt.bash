@@ -19,14 +19,7 @@ export PS4="+"
 
 ruby_version()
 {
-  local rv=
-
-  if test -n "${RUBY_ROOT}"
-  then
-    rv=$(basename ${RUBY_ROOT})
-  else
-    rv="system"
-  fi
+  local rv=$(ruby -e 'puts RUBY_VERSION')
   echo $rv
 }
 
