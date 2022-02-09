@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash
+#!/opt/homebrew/bin/bash
 
 md5_fp=$(openssl pkey -in $1 -pubout -outform DER | openssl md5 -c)
 sha1_fp=$(openssl pkcs8 -in $1  -nocrypt -topk8 -outform DER | openssl sha1 -c)
