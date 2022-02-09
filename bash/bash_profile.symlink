@@ -11,6 +11,7 @@ export ICLOUD_DRIVE="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
 [ -d $DOTS ]               && PATH="$DOTS/bin:$PATH"
 [ -d $HOME/.cargo/bin ]    && PATH="$HOME/.cargo/bin:$PATH"
 [ -d $HOME/tools/flutter ] && PATH="$HOME/tools/flutter/bin:$PATH"
+[ -d /Library/TeX/texbin ] && PATH="$PATH:/Library/Tex/texbin"
 
 [ -d $HOMEBREW_ROOT/opt/mysql@5.7/bin ] && PATH="$PATH:$HOMEBREW_ROOT/opt/mysql@5.7/bin"
 #  echo 'export PATH="/opt/homebrew/opt/mongodb-community@4.4/bin:$PATH"'
