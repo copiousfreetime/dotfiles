@@ -22,6 +22,8 @@ fi
 [ -d $HOMEBREW_ROOT/opt/mongodb-community@4.4/bin ] && PATH="$PATH:$HOMEBREW_ROOT/opt/mongodb-community@4.4/bin"
 #[ -d $HOMEBREW_ROOT/opt/llvm/bin    ] && PATH="$PATH:$HOMEBREW_ROOT/opt/llvm/bin"
 
+# Yarn defaults
+PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 export PATH
 
