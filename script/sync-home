@@ -1,23 +1,33 @@
 #!/usr/bin/env ruby
 
 require 'fileutils'
+require 'shellwords'
 
-dest_home="/Volumes/Macintosh HD - Data/Users/jeremy"
-src_home=File.expand_path("~")
+src_home=Shellwords.escape("/Volumes/Macintosh HD - Data/Users/jeremy")
+dest_home=File.expand_path("~")
 
-#  Clients
-#  Desktop
-#  Documents
-#  Downloads
-#  Movies
-#  Music
-#  Mylio
-#  Pictures
-#  problems
-top_level_dirs = %w[
-  repos
-  tmp
-  tools
+top_level_dirs = %w[ 
+Applications
+Clients
+Creative Cloud Files
+Desktop
+Documents
+Downloads
+Dropbox
+Library
+Movies
+Music
+Mylio
+Pictures
+Public
+bin
+go
+problems
+radar-box
+repos
+src
+tmp
+tools
 ]
 
 Dir.chdir(dest_home) do
