@@ -250,3 +250,5 @@
 [user]
 	name = copiousfreetime
 	email = jeremy@copiousfreetime.org
+[init]
+	defaultBranch = main
