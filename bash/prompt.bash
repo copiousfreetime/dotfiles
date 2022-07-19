@@ -1,6 +1,9 @@
 
 #-- Colors --
-. ${HOME}/.config/base16-shell/base16-tomorrow.dark.sh
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+            eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 TERM_BLACK='\[\e[0;30m\]'
 TERM_RED='\[\e[0;31m\]'
