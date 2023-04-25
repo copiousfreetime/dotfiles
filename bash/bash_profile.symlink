@@ -74,3 +74,4 @@ export REACT_EDITOR=/dev/null
 
 
 export PATH="$HOME/.cargo/bin:$PATH"
+source /Users/jeremy/.config/broot/launcher/bash/br
