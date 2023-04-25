@@ -1,3 +1,3 @@
 source $HOMEBREW_ROOT/opt/chruby/share/chruby/chruby.sh
 
-chruby 3.1.3
+chruby 3.2.2
