@@ -18,6 +18,8 @@ if [ -d $HOME/Library/Android/sdk ]; then
   PATH="$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools"
 fi
 
+[ -d $HOMEBREW_ROOT/opt/make/libexec/gnubin ] && PATH="$HOMEBREW_ROOT/opt/make/libexec/gnubin:$PATH"
+
 [ -d $HOMEBREW_ROOT/opt/mysql@5.7/bin ] && PATH="$PATH:$HOMEBREW_ROOT/opt/mysql@5.7/bin"
 #  echo 'export PATH="/opt/homebrew/opt/mongodb-community@4.4/bin:$PATH"'
 [ -d $HOMEBREW_ROOT/opt/mongodb-community@4.4/bin ] && PATH="$PATH:$HOMEBREW_ROOT/opt/mongodb-community@4.4/bin"
