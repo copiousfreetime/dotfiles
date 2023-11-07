@@ -44,17 +44,17 @@ shopt -s histappend; # append not rewrite history
 shopt -s cmdhist
 # -- history -- #
 
-## source the bash completions
-if [ -f ${HOMEBREW_ROOT}/etc/bash_completion ]; then
-   source ${HOMEBREW_ROOT}/etc/bash_completion
-fi
-
 # ==== Source all the other bash files in the dotfiles repo ==== #
 for file in `find -L $DOTS -depth 2 -maxdepth 2 -type f -name '*.bash'`; do
   if [ -f $file ]; then
     source $file
   fi
 done
+
+## source the bash completions
+if [ -f ${HOMEBREW_ROOT}/etc/bash_completion ]; then
+   source ${HOMEBREW_ROOT}/etc/bash_completion
+fi
 
 # prompt and colors
 if [ "$PS1" ] ; then
