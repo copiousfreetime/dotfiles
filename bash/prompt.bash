@@ -28,25 +28,25 @@ ruby_version()
 
 gem_home_top()
 {
-  local gh=
+  local rh=
   if test -n "${GEM_HOME}"
   then
     if [ "${GEM_HOME}" == "${GEM_ROOT}" ]
     then
-      gh="system"
+      rh="system"
     else
       local parent=$(echo ${GEM_HOME} | sed s/\.gem.*$//)
       if test -n "${parent}"
       then 
-        gh=$(basename ${parent})
+        rh=$(basename ${parent})
       else
-        gh="unknown"
+        rh="unknown"
       fi
     fi
   else
-    gh="unset"
+    rh="unset"
   fi
-  echo $gh
+  echo $rh
 }
 
 promptFunc()
@@ -70,5 +70,4 @@ promptFunc()
 }
 
 PROMPT_COMMAND=promptFunc
-
 

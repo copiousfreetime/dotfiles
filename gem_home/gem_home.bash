@@ -6,7 +6,7 @@ if [[ "$(type -t chruby)" != 'function' ]]; then
   source ${DOTS}/chruby/chruby.bash
 fi
 
-function gh() {
+function rh() {
   local dir version
   dir="$PWD/"
   dir="${dir%/*}"

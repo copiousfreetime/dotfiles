@@ -22,4 +22,4 @@ else
   echo "$PWD/.ruby-version not found"
 fi
 
-gem_home .
+#gem_home .
