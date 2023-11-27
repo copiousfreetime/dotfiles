@@ -45,7 +45,7 @@ shopt -s cmdhist
 # -- history -- #
 
 # ==== Source all the other bash files in the dotfiles repo ==== #
-for file in `find -L $DOTS -depth 2 -maxdepth 2 -type f -name '*.bash'`; do
+for file in `find -L $DOTS -depth -maxdepth 2 -type f -name '*.bash'`; do
   if [ -f $file ]; then
     source $file
   fi
