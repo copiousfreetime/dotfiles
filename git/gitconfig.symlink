@@ -1,3 +1,7 @@
+# vim: ft=gitconfig
+[init]
+  defaultBranch = main
+
 [include]
   path = ~/.gitconfig-user
 
@@ -34,7 +38,7 @@
   attributesfile = ~/.gitattributes
   # Don't prompt for commit messages for merge commits.
   mergeoptions = --no-edit
-  pager = delta --dark
+  # pager = delta --dark
 
 [help]
   # Autocorrect mistyped commands.
@@ -70,10 +74,6 @@
 [mergetool "opendiff"]
   # Use a script to setup opendiff correctly for Git merges.
   path = git-mergetool-opendiff
-
-[credential]
-  # Use OS X Keychain to store HTTP passwords.
-  helper = osxkeychain
 
 [hub]
   protocol = https
@@ -245,10 +245,3 @@
   s = status --short --branch
   con = diff --name-only --diff-filter=U
   co = checkout
-
-# vim: ft=gitconfig
-[user]
-	name = copiousfreetime
-	email = jeremy@copiousfreetime.org
-[init]
-	defaultBranch = main
