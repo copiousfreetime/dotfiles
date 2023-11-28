@@ -6,8 +6,14 @@ fi
 
 # Auto-completion
 # ---------------
-source "/opt/homebrew/opt/fzf/shell/completion.bash"
+fzf_auto_complete="/opt/homebrew/opt/fzf/shell/completion.bash"
+if [[ -f $fzf_auto_complete ]]; then
+  source $fzf_auto_complete
+fi
 
 # Key bindings
 # ------------
-source "/opt/homebrew/opt/fzf/shell/key-bindings.bash"
+fzf_key_bindings="/opt/homebrew/opt/fzf/shell/key-bindings.bash"
+if [[ -f $fzf_key_bindings ]]; then
+  source $fzf_key_bindings
+fi

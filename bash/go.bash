@@ -1,8 +1,8 @@
 
 # Setup Go
 export GOPATH=$HOME/go
-export GOROOT=$(brew --prefix go)/libexec
-if [ -d "$GOPATH/bin" ] ; then
-  PATH="$PATH:$GOPATH/bin"
+PATH="$PATH:$GOPATH/bin"
+if command -v brew; then
+  export GOROOT=$(brew --prefix go)/libexec
   PATH="$PATH:$GOROOT/bin"
 fi
