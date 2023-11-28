@@ -10,8 +10,12 @@ IRB.conf[:PROMPT][:MY_PROMPT] = {
   :PROMPT_N => ">> ",
   :PROMPT_S => '',
   :PROMPT_C => '',
-  :RETURN   => ''
+  :RETURN   => "=> %s\n"
 }
+# :RETURN => ''
 
 IRB.conf[:PROMPT_MODE] = :MY_PROMPT
+IRB.conf[:USE_TRACER] = false
+IRB.conf[:USE_COLORIZE] = true
+IRB.conf[:USE_MULTILINE] = true
 

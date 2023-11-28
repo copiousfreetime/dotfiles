@@ -1,6 +1,6 @@
 # Dot Files
 
-My dot files for MacOS based machines.
+My dot files for *NIX based machines.
 
 ## Installation
 
@@ -22,6 +22,8 @@ all the available rake tasks via the `rake -T` command.
 ## Bootstrapping a New Machine
 
 Download the `strap` script:
+
+### MacOS
 
 ```
 curl -s -XGET 'https://raw.githubusercontent.com/copiousfreetime/dotfiles/master/script/strap' > strap
@@ -54,6 +56,11 @@ cd ~/.dotfiles
 rake vim:install base16:install
 rake install
 ```
+
+### *nix
+
+```
+curl -s -XGET 'https://raw.githubusercontent.com/copiousfreetime/dotfiles/master/script/strap.nix' > strap
 
 Now it is time to go and apply license files and log back in to all the
 applications. Enjoy the new machine!

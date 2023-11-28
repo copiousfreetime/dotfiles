@@ -21,6 +21,7 @@ word_count = Integer(ARGV.shift || 3)
 phrase     = word_count.times.map { diceword(words) }.join('-')
 puts phrase
 
+# data for dicegen to use is all the bottom of the file
 __END__
 11111   a
 11112   a&p
