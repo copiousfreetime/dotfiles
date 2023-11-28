@@ -61,7 +61,16 @@ rake install
 
 ```
 curl -s -XGET 'https://raw.githubusercontent.com/copiousfreetime/dotfiles/master/script/strap.nix' > strap
+```
 
+Run the `strap` script
+
+```
+chmod 755 strap
+./strap
+```
+
+This will download dotfiles, symlink files into place,
 Now it is time to go and apply license files and log back in to all the
 applications. Enjoy the new machine!
 

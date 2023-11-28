@@ -171,12 +171,14 @@ if [ -n "$STRAP_GITHUB_USER" ]; then
   fi
 fi
 
-## Install all the dotfiles
+## Install all the dotfiles, base16 theme and vim
+log "Installing dotfiles, base16 theme and vim"
 (
 cd ~/.dotfiles
 rake base16:install vim:install install
 )
+logk
 
-## isntall vim
-
+log "Now open up nvim and run :PlugInstall"
+logk
 
