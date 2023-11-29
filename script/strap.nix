@@ -1,6 +1,6 @@
 #!/bin/bash
-#/ Usage: strap.nix [--debug]
-#/ Install development dependencies for *nix systems.
+# Usage: strap.nix [--debug]
+# Install development dependencies for *nix systems.
 
 set -e
 
@@ -110,7 +110,7 @@ if [  -z $rake ]; then
 fi
 (
 cd ~/.dotfiles
-rake base16:install vim:install install
+rake base16:install vim:install install ssh:install
 )
 logk
 
