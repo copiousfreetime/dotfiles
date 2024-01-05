@@ -27,36 +27,12 @@ ruby_version()
   echo $rv
 }
 
-gem_home_top()
-{
-  local rh=
-  if test -n "${GEM_HOME}"
-  then
-    if [ "${GEM_HOME}" == "${GEM_ROOT}" ]
-    then
-      rh="system"
-    else
-      local parent=$(echo ${GEM_HOME} | sed s/\.gem.*$//)
-      if test -n "${parent}"
-      then 
-        rh=$(basename ${parent})
-      else
-        rh="unknown"
-      fi
-    fi
-  else
-    rh="unset"
-  fi
-  echo $rh
-}
-
 promptFunc()
 {
   PREV_RET_VAL=$?
 
   PS1_RUBY=$(ruby_version)
-  PS1_GEM=$(gem_home_top)
-  PS1_RUBY="${TERM_RED}${PS1_RUBY}@${PS1_GEM} "
+  PS1_RUBY="${TERM_RED}${PS1_RUBY} "
 
   PS1_GIT=$(__git_ps1 "%s ")
   PS1_GIT="${TERM_YELLOW}${PS1_GIT:-}"
