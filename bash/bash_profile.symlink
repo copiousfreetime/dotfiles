@@ -12,6 +12,7 @@ export ICLOUD_DRIVE="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
 [ -d $HOME/.cargo/bin ]    && PATH="$HOME/.cargo/bin:$PATH"
 [ -d $HOME/tools/flutter ] && PATH="$HOME/tools/flutter/bin:$PATH"
 [ -d /Library/TeX/texbin ] && PATH="$PATH:/Library/Tex/texbin"
+[ -d $HOME/.pulumi/bin ]   && PATH="$HOME/.pulumi/bin:$PATH"
 if [ -d $HOME/Library/Android/sdk ]; then
   export ANDROID_HOME=$HOME/Library/Android/sdk
   export ANDROID_SDK=$HOME/Library/Android/sdk
