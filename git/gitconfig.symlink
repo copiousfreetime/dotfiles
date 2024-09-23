@@ -19,6 +19,7 @@
 [push]
   # Push to the set upstream branch being tracked by default.
   default = simple
+  autoSetupRemote = true
 
 [pull]
   rebase = true
@@ -245,3 +246,4 @@
   s = status --short --branch
   con = diff --name-only --diff-filter=U
   co = checkout
+
