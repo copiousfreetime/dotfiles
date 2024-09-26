@@ -22,6 +22,11 @@ if [ -d $HOME/Library/Android/sdk ]; then
   PATH="$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools"
 fi
 
+# for local overrides
+[ -d $HOME/.local/bin ] && PATH="$HOME/.local/bin:$PATH"
+
+# for locally instsalled nvim
+[ -d $HOME/.opt/nvim-linux64/bin ] && PATH="$HOME/.opt/nvim-linux64/bin:$PATH"
 [ -d $HOMEBREW_ROOT/opt/make/libexec/gnubin ] && PATH="$HOMEBREW_ROOT/opt/make/libexec/gnubin:$PATH"
 
 #  echo 'export PATH="/opt/homebrew/opt/mongodb-community@4.4/bin:$PATH"'
