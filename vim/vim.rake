@@ -21,6 +21,7 @@ namespace :vim do
     version = "v0.9.5"
     basename = "nvim-linux64.tar.gz"
     url = "https://github.com/neovim/neovim/releases/download/#{version}/#{basename}"
+    %x[ mkdir -p ~/tmp ]
     dest = File.expand_path("~/tmp/#{basename}")
 
     # download the file into a directory, unpack it, and then move the files
