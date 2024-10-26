@@ -1,7 +1,6 @@
 [user]
   # Name used in commit messages.
   name = Jeremy Hinegardner
- # name = copiousfreetime
   # Email used in commit messages.
   email = jhinegardner@easypost.com
 
