@@ -2,8 +2,18 @@
 [init]
   defaultBranch = main
 
+[column]
+  ui = auto
+
+[branch]
+  sort = -committerdate
+
 [include]
   path = ~/.gitconfig-user
+
+[tag]
+  sort = version:refname
+
 
 [color]
   # Colour terminal command output when possible.
@@ -12,25 +22,25 @@
   showbranch = auto
   status = auto
 
-[gist]
-  # Open GitHub Gist in browser after submission.
-  browse = true
-
 [push]
   # Push to the set upstream branch being tracked by default.
   default = simple
   autoSetupRemote = true
+  followTags = true
 
 [pull]
   rebase = true
 
 [fetch]
   # Always prune when fetching (and pulling).
-  prune = 1
+  prune = true
+  pruneTags = true
+  all = true
 
 [rerere]
   # Store and re-use manual conflict resolution changes.
-  enabled = 1
+  enabled = true
+  autoupdate = true
 
 [core]
   # Exclude everything this file. Used for general exclusions.
@@ -43,45 +53,22 @@
 
 [help]
   # Autocorrect mistyped commands.
-  autocorrect = 1
+  autocorrect = "prompt"
 
 [diff]
-  # Use the OS X graphical three-way merge tool for graphical diffs.
-  tool = opendiff
-  # Use the slower but better patience diff algorithm
-  algorithm = patience
-  # Use new diff algorithm to make e.g. function diffs look better.
-  compactionheuristic = true
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
 
 [diff "xml"]
   textconv = xmllint --format --recover
 
-[difftool "opendiff"]
-  # Set the OS X opendiff command name.
-  path = opendiff
-
 [merge]
-  # Use the OS X graphical three-way merge tool for graphical merges.
-  tool = opendiff
-
-[mergetool]
-  # Don't prompt before opening the merge tool.
-  prompt = false
-  # Don't keep backups of the merge tool inputs.
-  keepBackup = false
-  # Don't keep the merge tool temporary input/output files.
-  keepTemporaries = false
-
-[mergetool "opendiff"]
-  # Use a script to setup opendiff correctly for Git merges.
-  path = git-mergetool-opendiff
+  conflictstyle = zdiff3
 
 [hub]
   protocol = https
-
-[instaweb]
-  # Use the Ruby WEBRick library when creating a `git instaweb` HTTP server.
-  httpd = webrick
 
 [apply]
   # Cleanup whitespace by default when apply patches.
@@ -94,13 +81,7 @@
 [rebase]
   # Run `git stash` if needed before a `git rebase`
   autoStash = true
-
-# Settings for Git LFS
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-  required = true
-	process = git-lfs filter-process
+  updateRefs = true
 
 [alias]
   # Show my branches
@@ -138,9 +119,6 @@
   upstream-current-branch = !git push --set-upstream origin \
                            $(git current-branch)
 
-  # Create a pull request on GitHub using the `hub` command.
-  pull-request = !hub pull-request -o
-
   # Upstream the current branch to origin and create a pull request
   # on GitHub.
   upstream-and-pull-request = !git upstream-current-branch \
@@ -177,44 +155,15 @@
   fix-up-previous-commit = !git commit --all --amend \
                                 --reuse-message=HEAD --date=\"$(date)\" #"
 
-  # Checkout the master branch and update it.
-  pull-master = !git checkout master && git pull
-
   # Commit a work-in-progress commit (to use with
   # fix-up-previous-commit)
   work-in-progress = commit -a -m 'WIP'
 
-  # Merge a branch with a merge commit and use the more time-consuming
-  # patience diff algorithm
-  patience = !git noff -Xpatience
-
   # Hard reset branch to the upstream version.
   hard-reset = !git reset --hard $(git upstream)/$(git current-branch)
 
-  # Assume the specified file is unchanged to stop changes
-  # being seen by Git
-  assume = update-index --assume-unchanged
-
-  # No longer assume a specified file remains unchanged
-  unassume = update-index --no-assume-unchanged
-
-  # List all files that are assumed to be unchanged
-  assumed = !git ls-files -v | grep '^[hsmrck?]' | cut -c 3-
-
-  # Delete all non-master branches
-  delete-merged = !git branch --merged | grep -v 'master' | grep -v '*' | xargs -n 1 git branch -D
-
-  # Get the merge-base compared to origin/master
-  merge-base-master = merge-base origin/master HEAD
-
-  # Diff against the current branch's merge-base
-  diff-merge-base = !git diff $(git merge-base-master)
-
   # Prune branches and collect garbage
   prune-and-gc = !git remote prune origin && git prune && git gc
-
-  # Open the git documentation in a web browser (MacOS only)
-  docs = !open $HOMEBREW_ROOT/share/doc/git-doc/index.html
 
   # What have I been working on today
   today = !git log --since="00:00:00" --all --oneline --no-merges --author=\"$(git config user.email)\"
@@ -223,13 +172,9 @@
   fahr = !git fetch --all && git hard-reset
   rem = !git rebase-against-master
   wip = !git work-in-progress
-  pr = !git upstream-and-pull-request
-  up = !git upstream-current-branch
   fa = !git fetch --all
   pf = !git push --force-with-lease
-  dm = !git diff-merge-base
   dh = !git diff HEAD
-  mb = !git merge-base-master
   br = !git branches-with-relative-age
   w = !git word-diff
   u = !git push-and-set-upstream
