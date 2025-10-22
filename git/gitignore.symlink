@@ -44,3 +44,6 @@ Thumbs.db
 # Local cache of things #
 #########################
 .gem/
+
+# Claude configuration
+.claude/

@@ -44,6 +44,19 @@ alias vim=nvim
 # -- other -- #
 alias tmux="tmux -2"
 alias myip='curl ifconfig.co'
+alias gcloud-auth='gcloud auth application-default login'
+
+# -- git -- #
+alias gpl="git pull"
+alias gps="git push"
+alias gst="git status"
+alias gco="git checkout"
+
+# -- podman-compose -- #
+alias pc="podman-compose"
+alias pcr="podman-compose run"
+alias pcd="podman-compose down"
+alias pcu="podman-compose up"
 
 # search for system icons
 function icons {

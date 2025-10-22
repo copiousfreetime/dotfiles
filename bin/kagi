@@ -1,0 +1,6 @@
+#!/opt/homebrew/bin/bash
+
+read -r _height width < <(stty size)
+width=$((width - 10))
+
+$GOPATH/bin/kagi --kagi-api-key "${KAGI_API_KEY}" "$@" | glow -p -w ${width}
