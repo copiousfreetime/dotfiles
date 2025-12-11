@@ -23,3 +23,4 @@ freetype-load-flags = no-force-autohint
 font-thicken = true
 font-thicken-strength = 100
 theme = Tomorrow Night
+term = xterm-256color

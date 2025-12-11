@@ -1,11 +1,12 @@
 require 'rake'
+require 'debug'
 
 # Load in any *.rake files from the subfolders
 Dir.glob("*/*.rake").each { |fn| load fn }
 
 namespace :install do
 
-  def install_linkable(linkable:, extension: ".symlink" )
+  def install_linkable(linkable:, target:)
     overwrite = false
     backup = false
 
@@ -13,8 +14,6 @@ namespace :install do
     backup_all = !!ENV['BACKUP_ALL'] || false
     overwrite_all = false
 
-    file = File.basename(linkable, extension)
-    target = "#{ENV["HOME"]}/.#{file}"
     source = File.realpath(linkable)
 
     if File.exist?(target) && File.symlink?(target) && source == File.readlink(target)
@@ -32,22 +31,50 @@ namespace :install do
           when 's' then return
           end
         end
-        FileUtils.rm_rf(target) if overwrite || overwrite_all
-        `mv "$HOME/.#{file}" "$HOME/.#{file}.backup"` if backup || backup_all
+        FileUtils.unlink(target) if overwrite || overwrite_all
+        FileUtils.mv(target, "#{target}.backup") if backup || backup_all
       end
       puts "Linking #{source} -> #{target}"
-      `ln -s "#{source}" "#{target}"`
+      FileUtils.ln_s(source, target)
     end
   end
+
+  desc "Install all the linkable files"
+  task :linkable_files do
+    extension = ".symlink"
+    destination = File.expand_path("~/")
+
+    glob_path = File.join("**", "*#{extension}")
+    linkable_files = Dir.glob(glob_path)
+
+    linkable_files.each do |linkable|
+      basename = File.basename(linkable, extension)
+      basename = ".#{basename}"
+      target = File.join(destination, basename)
+      install_linkable(linkable:, target:)
+    end
+  end
+
+  desc "Install all the linkable dirs"
+  task :linkable_dirs do
+    extension = ".config_link"
+    destination = File.expand_path("~/.config")
+
+    source_dir = File.dirname(__FILE__)
+    glob_path = File.join(source_dir, "*#{extension}")
+
+    linkable_dirs = Dir.glob(glob_path)
+
+    linkable_dirs.each do |linkable|
+      basename = File.basename(linkable, extension)
+      target = File.join(destination, basename)
+      install_linkable(linkable:, target:)
+    end
+  end
+
 
   desc "Install all the linkables"
-  task :linkables do
-    linkables = Dir.glob('**/*.symlink')
-
-    linkables.each do |linkable|
-      install_linkable(linkable:)
-    end
-  end
+  task :linkables => [:linkable_files, :linkable_dirs]
 
   desc "Install the gitconfig for #{ENV['USER']}"
   task :gitconfig_user do
@@ -63,7 +90,7 @@ namespace :install do
 end
 
 desc "Hook our dotfiles into system-standard positions."
-task :install => ["install:linkables", "install:gitconfig_user"]
+task :install => ["install:linkables", "install:gitconfig_user", "install:linkable_dirs"]
 
 task :uninstall do
 
