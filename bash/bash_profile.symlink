@@ -82,5 +82,3 @@ if [ -f $HOME/.bashrc ] ; then source $HOME/.bashrc ; fi
 export REACT_EDITOR=/dev/null
 
 if [ -f $HOME/.cargo/env ]; then source $HOME/.cargo/env ; fi
-
-. "$HOME/.local/bin/env"
