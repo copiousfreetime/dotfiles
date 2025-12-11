@@ -1,0 +1,88 @@
+#!/bin/bash
+#/ Usage: gcloud-sync-creds [-h]
+#/
+#/ Authenticate with GCloud Application Default Credentials and sync
+#/ the credentials file to remote hosts.
+#/
+#/ OPTIONS:
+#/   -h    Show this help message
+#/
+set -e
+
+# Configuration - customize this list with your target hosts
+HOSTS="mydev mypodman"
+
+CREDS_PATH=".config/gcloud/application_default_credentials.json"
+CREDS_DIR="$(dirname "$CREDS_PATH")"
+CREDS_FILE="${HOME}/${CREDS_PATH}"
+
+show_help() {
+  grep "^#/" "${BASH_SOURCE[0]}" | cut -c 4-
+  echo ""
+  if [ -n "$HOSTS" ]; then
+    echo "Configured hosts:"
+    for host in $HOSTS; do
+      echo "  - $host"
+    done
+  else
+    echo "No hosts configured. Edit the HOSTS variable in this script."
+  fi
+}
+
+while getopts ':h' OPTION; do
+  case $OPTION in
+    h)
+      show_help
+      exit 0
+      ;;
+  esac
+done
+
+if [ -z "$HOSTS" ]; then
+  echo "Error: No hosts configured. Edit the HOSTS variable in this script."
+  exit 1
+fi
+
+# Check if credentials file exists and is less than 12 hours old
+needs_auth=true
+if [ -f "$CREDS_FILE" ]; then
+  file_age=$(( $(date +%s) - $(stat -f %m "$CREDS_FILE") ))
+  max_age=$(( 12 * 60 * 60 ))  # 12 hours in seconds
+  if [ $file_age -lt $max_age ]; then
+    needs_auth=false
+    echo "Credentials file is less than 12 hours old, skipping auth."
+  fi
+fi
+
+if [ "$needs_auth" = true ]; then
+  echo "Running gcloud auth application-default login..."
+  gcloud auth application-default login
+fi
+
+if [ ! -f "$CREDS_FILE" ]; then
+  echo "Error: Credentials file not found at $CREDS_FILE"
+  exit 1
+fi
+
+echo ""
+echo "Syncing credentials to remote hosts..."
+
+failed=0
+for host in $HOSTS; do
+  echo -n "  $host ... "
+  if rsync -av "$CREDS_FILE" "$host:~/$CREDS_DIR/"; then
+    echo "OK"
+  else
+    echo "FAILED"
+    failed=1
+  fi
+done
+
+if [ $failed -eq 1 ]; then
+  echo ""
+  echo "Warning: Some hosts failed to sync."
+  exit 1
+fi
+
+echo ""
+echo "Done."
