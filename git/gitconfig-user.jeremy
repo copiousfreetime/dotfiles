@@ -2,7 +2,7 @@
   # Name used in commit messages.
   name = Jeremy Hinegardner
   # Email used in commit messages.
-  email = jhinegardner@easypost.com
+  email = jeremy@copiousfreetime.org
 
 [github]
   # GitHub username for command-line tools.
