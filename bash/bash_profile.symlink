@@ -22,6 +22,11 @@ if [ -d $HOME/Library/Android/sdk ]; then
   PATH="$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools"
 fi
 
+# for local overrides
+[ -d $HOME/.local/bin ] && PATH="$HOME/.local/bin:$PATH"
+
+# for locally installed nvim
+[ -d $HOME/.opt/nvim-linux-x86_64/bin ] && PATH="$HOME/.opt/nvim-linux-x86_64/bin:$PATH"
 [ -d $HOMEBREW_ROOT/opt/make/libexec/gnubin ] && PATH="$HOMEBREW_ROOT/opt/make/libexec/gnubin:$PATH"
 
 #  echo 'export PATH="/opt/homebrew/opt/mongodb-community@4.4/bin:$PATH"'
@@ -77,11 +82,3 @@ if [ -f $HOME/.bashrc ] ; then source $HOME/.bashrc ; fi
 export REACT_EDITOR=/dev/null
 
 if [ -f $HOME/.cargo/env ]; then source $HOME/.cargo/env ; fi
-. "$HOME/.cargo/env"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/opt/homebrew/share/google-cloud-sdk/path.bash.inc' ]; then . '/opt/homebrew/share/google-cloud-sdk/path.bash.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/opt/homebrew/share/google-cloud-sdk/completion.bash.inc' ]; then . '/opt/homebrew/share/google-cloud-sdk/completion.bash.inc'; fi
-

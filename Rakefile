@@ -77,11 +77,16 @@ namespace :install do
 
   desc "Install the gitconfig for #{ENV['USER']}"
   task :gitconfig_user do
-    source_git_config_dir = "git"
     extension = ".#{ENV['USER']}"
+
+    source_git_config_dir = "git"
     linkable = File.join(source_git_config_dir, "gitconfig-user#{extension}")
+
+    destination = File.expand_path("~/")
+    target = File.join(destination, ".gitconfig-user")
+
     if File.exist?(linkable)
-      install_linkable(linkable:, extension:)
+      install_linkable(linkable:, target:)
     else
       puts "ERROR: #{linkable} does not exist"
     end
