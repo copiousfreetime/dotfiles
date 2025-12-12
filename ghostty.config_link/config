@@ -23,7 +23,17 @@ freetype-load-flags = no-force-autohint
 font-thicken = true
 font-thicken-strength = 100
 theme = Tomorrow Night
-term = xterm-256color
 
 # Disable the "confirm close" dialog
 confirm-close-surface = false
+
+# opening new tabs in home directory always
+working-directory = home
+window-inherit-working-directory = false
+
+# Deal with remote terminal integration
+# Instead of setting out term to xterm-256color -- it really only blows up in
+# another 
+#term = xterm-256color
+shell-integration = bash
+shell-integration-features = cursor,no-sudo,title,ssh-env,no-ssh-terminfo,path
