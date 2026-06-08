@@ -18,7 +18,7 @@ namespace :vim do
 
   desc "Install vim itself"
   task :install_vim do
-    version = "v0.11.4"
+    version = "v0.12.2"
     basename = "nvim-linux-x86_64.tar.gz"
     url = "https://github.com/neovim/neovim-releases/releases/download/#{version}/#{basename}"
     %x[ mkdir -p ~/tmp ]
