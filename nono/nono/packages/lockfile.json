@@ -1,0 +1,60 @@
+{
+  "lockfile_version": 4,
+  "registry": "https://registry.nono.sh",
+  "packages": {
+    "always-further/opencode": {
+      "version": "0.0.5",
+      "installed_at": "2026-06-02T17:37:42.773633+00:00",
+      "pinned": false,
+      "provenance": {
+        "signer_identity": "https://github.com/always-further/nono-packs/.github/workflows/publish-opencode.yml@refs/tags/opencode-v0.0.5",
+        "repository": "always-further/nono-packs",
+        "workflow": ".github/workflows/publish-opencode.yml",
+        "ref": "refs/tags/opencode-v0.0.5",
+        "rekor_log_index": 1643446445,
+        "signed_at": "2026-05-27T12:48:22.323224+00:00"
+      },
+      "artifacts": {
+        "README.md": {
+          "sha256": "0686115d208bf52ba43d421965e762a8666b855ddf8c4619b877f23089ca1a6c",
+          "type": "plugin"
+        },
+        "assets/logo.png": {
+          "sha256": "133ebc3baa697b38bfb4e64a2aa463b067cfc40ec9f03ca593a1564080c644f2",
+          "type": "plugin"
+        },
+        "plugin/nono-sandbox.ts": {
+          "sha256": "4240f144dfb00d6aad528eb92d43028c005db9e80daaf7cd71049404c50c4aae",
+          "type": "plugin"
+        },
+        "profiles/opencode.json": {
+          "sha256": "1ebe0eadb06f8f31e3961dca2979ebf7eff8e3a252917b2c86f0854c7d509d83",
+          "type": "profile"
+        },
+        "skills/nono-sandbox/SKILL.md": {
+          "sha256": "60979d64c3bca4aed57276fbdd8965cdc357e48a4ed046491428700c209df22b",
+          "type": "plugin"
+        },
+        "wiring/profile-drafts-dir-marker": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "type": "plugin"
+        }
+      },
+      "wiring_record": [
+        {
+          "type": "write_file",
+          "dest": "/Users/jhinegardner/.config/nono/profile-drafts/.nono-opencode-pack-marker",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "type": "symlink",
+          "link": "/Users/jhinegardner/.config/opencode/plugins/nono-sandbox.ts"
+        },
+        {
+          "type": "symlink",
+          "link": "/Users/jhinegardner/.config/opencode/skills/nono-sandbox"
+        }
+      ]
+    }
+  }
+}

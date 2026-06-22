@@ -1,0 +1,38 @@
+{
+  "meta": {
+    "name": "opencode-testing",
+    "version": "1.0.0",
+    "description": "Auto-generated profile for opencode"
+  },
+  "filesystem": {
+    "allow": [
+      "~/.local/share/opencode",
+      "~/repos/github.com/copiousfreetime/opencode-files"
+    ],
+    "read": [
+      "/System",
+      "/Users"
+    ],
+    "write": [
+      "~/.cache/opencode/bin",
+      "~/.local/share/opentui/tree-sitter/languages",
+      "~/.local/share/opentui/tree-sitter/queries",
+      "~/.local/state/opencode"
+    ],
+    "allow_file": [],
+    "read_file": [
+      "/$bunfs/locales/en.json",
+      "/$bunfs/locales/en_US.json",
+      "/.git",
+      "/.opencode",
+      "/AppleInternal/XBS/.isChrooted"
+    ],
+    "write_file": []
+  },
+  "network": {
+    "block": true
+  },
+  "workdir": {
+    "access": "readwrite"
+  }
+}
