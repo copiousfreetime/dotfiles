@@ -22,6 +22,30 @@ end
 desc "Ensure all directories required by install tasks exist"
 task :ensure_dirs => [:ensure_config_dir, :ensure_my_repo_parent]
 
+# Clone (or update) a github repo under ~/repos/github.com/<owner>/<name> and
+# symlink it into place at `target`. Used by tasks that manage their config
+# via an external repo (e.g. vim, claude, opencode).
+def clone_and_symlink_repo(repo:, target:)
+  repo_dir = File.expand_path("~/repos/github.com/#{repo}")
+  target   = File.expand_path(target)
+
+  if File.directory?(repo_dir)
+    puts "Updating #{repo_dir}"
+    puts %x[ git -C #{repo_dir} pull --rebase --autostash ]
+  else
+    FileUtils.mkdir_p(File.dirname(repo_dir))
+    puts "Cloning git@github.com:#{repo}.git -> #{repo_dir}"
+    puts %x[ git clone git@github.com:#{repo}.git #{repo_dir} ]
+  end
+
+  if File.exist?(target)
+    puts "#{target} is not a symlink, this is a problem" unless File.symlink?(target)
+  else
+    puts "Linking #{repo_dir} -> #{target}"
+    FileUtils.ln_s(repo_dir, target)
+  end
+end
+
 # Load in any *.rake files from the subfolders
 Dir.glob("*/*.rake").each { |fn| load fn }
 

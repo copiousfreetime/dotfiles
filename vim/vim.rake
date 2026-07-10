@@ -4,20 +4,7 @@ require 'open-uri'
 namespace :vim do
   desc "Install custom vim actions"
   task :install => :ensure_dirs do
-    parent_repo = File.expand_path("~/repos/github.com/copiousfreetime")
-    repo_dir    = File.join(parent_repo, "vimfiles")
-    config_dir  = File.expand_path("~/.config")
-    nvim_config = File.join(config_dir, "nvim")
-
-    %x[ git clone git@github.com:copiousfreetime/vimfiles.git #{repo_dir} ] unless File.directory?(repo_dir)
-
-    if File.exist?(nvim_config) then
-      if !File.symlink?(nvim_config) then
-        puts "#{nvim_config} is not a symlink, this is a problem"
-      end
-    else
-      %x[ ln -s #{repo_dir} #{nvim_config} ]
-    end
+    clone_and_symlink_repo(repo: "copiousfreetime/vimfiles", target: "~/.config/nvim")
   end
 
   desc "Install vim itself"
