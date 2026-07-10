@@ -1,4 +1,26 @@
 require 'rake'
+require 'fileutils'
+
+desc "Ensure ~/.config exists as a real directory"
+task :ensure_config_dir do
+  config_dir = File.expand_path("~/.config")
+
+  if File.symlink?(config_dir)
+    raise "~/.config (#{config_dir}) is a symlink to #{File.readlink(config_dir)}. " \
+          "Install tasks expect ~/.config to be a real directory - move or remove " \
+          "the symlink and re-run."
+  end
+
+  FileUtils.mkdir_p(config_dir)
+end
+
+desc "Ensure ~/repos/github.com/copiousfreetime exists"
+task :ensure_my_repo_parent do
+  FileUtils.mkdir_p(File.expand_path("~/repos/github.com/copiousfreetime"))
+end
+
+desc "Ensure all directories required by install tasks exist"
+task :ensure_dirs => [:ensure_config_dir, :ensure_my_repo_parent]
 
 # Load in any *.rake files from the subfolders
 Dir.glob("*/*.rake").each { |fn| load fn }
@@ -55,7 +77,7 @@ namespace :install do
   end
 
   desc "Install all the linkable dirs"
-  task :linkable_dirs do
+  task :linkable_dirs => :ensure_dirs do
     extension = ".config_link"
     destination = File.expand_path("~/.config")
 
