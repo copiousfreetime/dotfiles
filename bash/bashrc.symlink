@@ -4,3 +4,6 @@
 if [[ -a $HOME/.localrc ]] ; then source $HOME/.localrc ; fi
 
 # EOF
+
+# opencode
+export PATH=/home/vagrant/.opencode/bin:$PATH
