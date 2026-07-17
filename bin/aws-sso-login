@@ -1,0 +1,111 @@
+#!/bin/bash
+#/ Usage: aws-sso-login [-h] [profile]
+#/
+#/ Log in to AWS SSO for the given profile.
+#/
+#/ The profile defaults to EasyPostAIHubEngineering and may be overridden
+#/ with a positional argument. Before logging in, the profile is validated
+#/ against your local AWS configuration (via `aws configure list-profiles`).
+#/
+#/ Detects whether the current machine has a graphical environment and
+#/ picks the appropriate login flow:
+#/
+#/   - GUI present    : opens the default browser to complete login.
+#/   - No GUI present : falls back to the device-code flow so login can
+#/                      be completed from another device (e.g. on a
+#/                      headless box or over an SSH session).
+#/
+#/ OPTIONS:
+#/   -h    Show this help message
+#/
+set -e
+
+DEFAULT_PROFILE="EasyPostAIHubEngineering"
+
+show_help() {
+  grep "^#/" "${BASH_SOURCE[0]}" | cut -c 4-
+}
+
+# has_gui returns 0 (success) when a browser can be opened on this machine,
+# and non-zero otherwise.
+has_gui() {
+  # A remote SSH session cannot open a browser for the local user.
+  if [ -n "${SSH_CONNECTION:-}" ] || [ -n "${SSH_TTY:-}" ] || [ -n "${SSH_CLIENT:-}" ]; then
+    return 1
+  fi
+
+  case "$(uname -s)" in
+    Darwin)
+      # macOS: a GUI is available when the WindowServer is running for a
+      # logged-in console session.
+      pgrep -x WindowServer >/dev/null 2>&1
+      ;;
+    *)
+      # Linux/BSD: a GUI is available when a display server is reachable.
+      [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" ]
+      ;;
+  esac
+}
+
+# validate_profile ensures the given profile exists in the local AWS config.
+# Uses `aws configure list-profiles` (AWS CLI v2); if that is unavailable the
+# check is skipped rather than blocking login.
+validate_profile() {
+  local profile="$1"
+  local profiles
+
+  if ! profiles="$(aws configure list-profiles 2>/dev/null)"; then
+    echo "Warning: could not list AWS profiles (requires AWS CLI v2); skipping validation." >&2
+    return 0
+  fi
+
+  if ! printf '%s\n' "$profiles" | grep -qxF -- "$profile"; then
+    echo "Error: AWS profile '$profile' not found in your local configuration." >&2
+    echo "" >&2
+    echo "Available profiles:" >&2
+    printf '%s\n' "$profiles" | while IFS= read -r p; do
+      [ -n "$p" ] && echo "  - $p" >&2
+    done
+    exit 1
+  fi
+}
+
+while getopts ':h' OPTION; do
+  case $OPTION in
+    h)
+      show_help
+      exit 0
+      ;;
+    *)
+      show_help
+      exit 1
+      ;;
+  esac
+done
+shift $((OPTIND - 1))
+
+if [ "$#" -gt 1 ]; then
+  echo "Error: too many arguments; expected at most one profile name." >&2
+  echo "" >&2
+  show_help >&2
+  exit 1
+fi
+
+PROFILE="${1:-$DEFAULT_PROFILE}"
+
+if ! command -v aws >/dev/null 2>&1; then
+  echo "Error: the 'aws' CLI is not installed or not on your PATH." >&2
+  exit 1
+fi
+
+validate_profile "$PROFILE"
+
+if has_gui; then
+  echo "GUI detected; launching browser-based login for profile '$PROFILE'..."
+  aws sso login --profile "$PROFILE"
+else
+  echo "No GUI detected; using device-code login for profile '$PROFILE'..."
+  aws sso login --profile "$PROFILE" --no-browser --use-device-code
+fi
+
+# vim:ft=sh
