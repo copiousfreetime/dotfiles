@@ -28,16 +28,21 @@
       "$XDG_DATA_HOME/nvim",
       "$XDG_STATE_HOME/nvim",
       "$XDG_CACHE_HOME/nvim",
-      "$HOME/.vimundo"
+      "$HOME/.vimundo",
+      "$HOME/.nvm"
     ],
     "read": [
       "$XDG_CONFIG_HOME/nvim",
       "$HOME/.rubies",
       "$HOME/.gem",
-      "$HOME/.cache/pre-commit"
+      "$HOME/.cache/pre-commit",
+      "$HOME/.cache/node",
+      "$HOME/.config/pnpm"
     ],
     "write": [],
-    "allow_file": [],
+    "allow_file": [
+      "$HOME/.npmrc"
+    ],
     "read_file": [
       "$HOME/.gitconfig-user",
       "$HOME/.gitignore",
@@ -62,7 +67,8 @@
       "~/Library/Keychains/login.keychain-db",
       "~/repos",
       "~/repos/github.com",
-      "~/repos/github.com/easypost"
+      "~/repos/github.com/easypost",
+      "/System"
     ]
   },
   "network": {
@@ -75,6 +81,9 @@
     "upstream_proxy": null,
     "upstream_bypass": []
   },
+  "diagnostics": {
+    "suppress_system_services": []
+  },
   "linux": {
     "af_unix_mediation": null
   },
@@ -84,6 +93,7 @@
     "access": "none"
   },
   "hooks": {},
+  "session_hooks": {},
   "rollback": {
     "exclude_patterns": [],
     "exclude_globs": []
@@ -95,6 +105,7 @@
   "interactive": false,
   "skipdirs": [],
   "packs": [],
+  "binary": null,
   "command_args": [],
   "unsafe_macos_seatbelt_rules": []
 }
