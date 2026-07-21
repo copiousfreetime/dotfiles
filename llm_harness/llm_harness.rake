@@ -4,18 +4,19 @@ require 'fileutils'
 namespace :llm_harness do
 
   namespace :claude do
-    task :ensure_bin_installed do
+    task :ensure_config_installed do
+      puts "==> Installing ~/.claude directory"
+      sync_and_symlink_repo(repo: "copiousfreetime/claudefiles", target: "~/.claude")
+    end
+
+    # the installer uses ~/.claude directory for the downloads
+    task :ensure_bin_installed => :ensure_config_installed do
       puts "==> Installing claude code"
       system("curl -fsSL https://claude.ai/install.sh | bash")
     end
 
-    task :ensure_config_installed do
-      puts "==> Installing claude claude config"
-      sync_and_symlink_repo(repo: "copiousfreetime/claudefiles", target: "~/.claude")
-    end
-
     desc "Install claude code and its config"
-    task :install => [:ensure_bin_installed, :ensure_config_installed ]
+    task :install => [:ensure_bin_installed]
   end
 
 
